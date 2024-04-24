@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static tailwind_tags %} {% tailwind_css %}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register</title>
+    <style>
+      .background {
+        background-image: url("{% static 'imgs/bg-login.jpg' %}");
+      }
+      .hidden {
+        display: none;
+      }
+      .text-red {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="text-white h-[100vh] flex justify-center items-center bg-cover background"
+    >
+      <div
+        class="bg-slate-800 border border-slate-400 rounded-md p-8 shadow-lg backdrop-filter backdrop-blur-sm bg-opacity-10 relative"
+      >
+        <h1 class="text-4xl font-bold text-center mb-6">Register</h1>
+        <form action="" method="post">
+          {% csrf_token %}
+          <div id="messagePopup" class="hidden">
+            <p id="messageText" class="text-red"></p>
+          </div>
+          <div class="flex flex-wrap -mx-2">
+            <div class="w-1/2 px-2 mb-4">
+              <input
+                type="username"
+                name="username"
+                class="block w-full py-2.3 px-0 text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:text-white focus:border-gray-600 peer"
+              />
+              <label
+                class="text-sm text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:sclae-75 peer-focus:-tranlate-y-6"
+                >Username</label
+              >
+            </div>
+            <div class="w-1/2 px-2 mb-4">
+              <input
+                type="password"
+                name="password"
+                class="block w-full py-2.3 px-0 text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:text-white focus:border-gray-600 peer"
+              />
+              <label
+                class="text-sm text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:sclae-75 peer-focus:-tranlate-y-6"
+                >Password</label
+              >
+            </div>
+            <div class="w-1/2 px-2 mb-4">
+              <input
+                type="text"
+                name="first_name"
+                class="block w-full py-2.3 px-0 text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:text-white focus:border-gray-600 peer"
+              />
+              <label
+                class="text-sm text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:sclae-75 peer-focus:-tranlate-y-6"
+                >First Name</label
+              >
+            </div>
+            <div class="w-1/2 px-2 mb-4">
+              <input
+                type="text"
+                name="last_name"
+                class="block w-full py-2.3 px-0 text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:text-white focus:border-gray-600 peer"
+              />
+              <label
+                class="text-sm text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:sclae-75 peer-focus:-tranlate-y-6"
+                >Last Name</label
+              >
+            </div>
+            <div class="w-1/2 px-2 mb-4">
+              <input
+                type="date"
+                name="birthdate"
+                class="block w-full py-2.3 px-3 text-sm text-gray-800 bg-white border-2 border-gray-300 rounded-md focus:outline-none focus:border-gray-500 transition-colors duration-300"
+              />
+              <label
+                class="text-sm text-white duration-300 transform -translate-y-9 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                >Birthdate</label
+              >
+            </div>
+            <div class="w-1/2 px-2 mb-4">
+              <select
+                name="gender"
+                class="block w-full py-2.3 px-3 text-sm text-gray-800 bg-white border-2 border-gray-300 rounded-md focus:outline-none focus:border-gray-500 transition-colors duration-300"
+              >
+                <option value="">Select Gender</option>
+                <option value="pria">Pria</option>
+                <option value="wanita">Wanita</option>
+              </select>
+              <label
+                class="text-sm text-white duration-300 transform -translate-y-9 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-12"
+                >Gender</label
+              >
+            </div>
+            <div class="w-1/2 px-2 mb-4">
+              <textarea
+                name="address"
+                rows="4"
+                class="block w-full py-2.3 px-3 text-sm text-gray-800 bg-white border-2 border-gray-300 rounded-md focus:outline-none focus:border-gray-500 transition-colors duration-300"
+                placeholder="Enter your address here..."
+              ></textarea>
+              <label
+                class="text-sm text-white duration-300 transform -translate-y-14 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                >Address</label
+              >
+            </div>
+            <div class="w-1/2 px-2 mb-4">
+              <input
+                type="email"
+                name="email"
+                required
+                class="block w-full py-2.3 px-0 text-sm text-gray-800 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:border-gray-500 transition-colors duration-300"
+                placeholder="Enter your email"
+              />
+              <label
+                class="text-sm text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-tranlate-y-6"
+                >Email</label
+              >
+            </div>
+            <div class="w-1/2 px-2 mb-4">
+              <input
+                type="tel"
+                name="mobile"
+                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                class="block w-full py-2.3 px-0 text-sm text-gray-800 bg-white border-2 border-gray-300 rounded-md focus:outline-none focus:border-gray-500 transition-colors duration-300"
+                placeholder="123-456-7890"
+                required
+              />
+              <label
+                class="text-sm text-white duration-300 transform -translate-y-9 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                >Mobile Phone</label
+              >
+            </div>
+            <div class="w-1/2 px-2 mb-4">
+              <input
+                type="text"
+                name="nip"
+                pattern="\d*"
+                class="block w-full py-2.3 px-0 text-sm text-gray-800 bg-transparent border-0 border-b-2 border-gray-300 appearance-none transition-colors duration-300"
+                placeholder="Enter your NIP"
+                required
+              />
+              <label
+                class="text-sm text-white duration-300 transform -translate-y-9 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-tranlate-y-6"
+                >NIP</label
+              >
+            </div>
+            <div class="w-1/2 px-2 mb-4">
+              <select
+                name="job"
+                class="block w-full py-2.3 px-3 text-sm text-gray-800 bg-white border-2 border-gray-300 rounded-md focus:outline-none focus:border-gray-500 transition-colors duration-300"
+                required
+              >
+                <option value="">Select your job</option>
+                <option value="ASN">ASN</option>
+                <option value="SWASTA">Swasta</option>
+                <option value="MAHASISWA">Mahasiswa</option>
+                <option value="PELAJAR">Pelajar</option>
+                <option value="WIRASWASTA">Wiraswasta</option>
+                <option value="PEGAWAI_NEGARA_NON_ASN">
+                  Pegawai Negara Non ASN
+                </option>
+                <option value="OTHER">Other</option>
+              </select>
+              <label
+                class="text-sm text-white duration-300 transform -translate-y-12 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-12"
+                >Pekerjaan</label
+              >
+            </div>
+            <div class="w-1/2 px-2 mb-4">
+              <select
+                name="education"
+                class="block w-full py-2.3 px-3 text-sm text-gray-800 bg-white border-2 border-gray-300 rounded-md focus:outline-none focus:border-gray-500 transition-colors duration-300"
+                required
+              >
+                <option value="">Select your education level</option>
+                <option value="TK">TK</option>
+                <option value="SD">SD</option>
+                <option value="SMP">SMP</option>
+                <option value="SMA">SMA</option>
+                <option value="D3">D3</option>
+                <option value="S1">S1</option>
+                <option value="S2">S2</option>
+                <option value="S3">S3</option>
+                <option value="OTHER_PENDIDIKAN">Other</option>
+              </select>
+              <label
+                class="text-sm text-white duration-300 transform -translate-y-12 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-12"
+                >Pendidikan</label
+              >
+            </div>
+          </div>
+          <button
+            class="w-full mb-4 text-[18px] mt-6 rounded-full bg-white text-yellow-800 hover:bg-yellow-600 hover:text-white py-2 transition-colors duration-300"
+            type="submit"
+          >
+            Register
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
+  <script>
+    {%if messages%}
+      const messageText = "{% for message in messages %}{{ message }}{% endfor %}";
+      document.getElementById('messageText').textContent = messageText;
+      document.getElementById('messagePopup').classList.remove('hidden');
+    {%endif%}
+  </script>
+</html>

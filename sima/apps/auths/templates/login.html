@@ -1,0 +1,98 @@
+{%load static tailwind_tags%} {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {%tailwind_css%}
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Login</title>
+    <style>
+      .background {
+        background-image: url("{% static 'imgs/bg-login.jpg' %}");
+      }
+      .hidden {
+        display: none;
+      }
+      .text-red {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="text-white h-[100vh] flex justify-center items-center bg-cover background"
+    >
+      <div
+        class="bg-slate-800 border border-slate-400 rounded-md p-8 shadow-lg backdrop-filter backdrop-blur-sm bg-opacity-10 relative"
+      >
+        <h1 class="text-4xl text-whitefont-bold text-center mb-6">Login</h1>
+        <form action="" method="post">
+          {% csrf_token %}
+          <div id="messagePopup" class="hidden">
+            <p id="messageText" class="text-red"></p>
+          </div>
+          <div class="relative my-4">
+            <input
+              type="username"
+              name="username"
+              class="block w-72 py-2.3 px-0 text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:text-white focus:border-gray-600 peer"
+            />
+            <label
+              htmlFor=""
+              class="text-sm text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:sclae-75 peer-focus:-tranlate-y-6"
+              >username</label
+            >
+          </div>
+
+          <div class="relative my-4">
+            <input
+              type="password"
+              name="password"
+              class="block w-72 py-2.3 px-0 text-sm text-white bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:focus:border-gray-500 focus:outline-none focus:ring-0 focus:text-white focus:border-gray-600 peer"
+            />
+            <label
+              htmlFor=""
+              class="text-sm text-white duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-gray-600 peer-focus:dark:text-gray-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:sclae-75 peer-focus:-tranlate-y-6"
+              >password</label
+            >
+          </div>
+          <div class="flex justify-between items-center">
+            <div class="flex gap-2 items-center">
+              <input type="checkbox" name="" id="" />
+              <label htmlFor="">Remember me</label>
+            </div>
+            <span
+              class="text-white hover:text-yellow-600 transition-colors duration-300"
+              ><a href="">Forgot password ?</a></span
+            >
+          </div>
+          <button
+            class="w-full mb-4 text-[18px] mt-6 rounded-full bg-white text-yellow-800 hover:bg-yellow-600 hover:text-white py-2 transition-colors duration-300"
+            type="submit"
+          >
+            Login
+          </button>
+          <div>
+            <span class="m-4"
+              >New Here?
+              <a
+                href=""
+                class="text-white hover:text-yellow-600 transition-colors duration-300"
+              >
+                create an account</a
+              ></span
+            >
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+  <script>
+    {%if messages%}
+      const messageText = "{% for message in messages %}{{ message }}{% endfor %}";
+      document.getElementById('messageText').textContent = messageText;
+      document.getElementById('messagePopup').classList.remove('hidden');
+    {%endif%}
+  </script>
+</html>
