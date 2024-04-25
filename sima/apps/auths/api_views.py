@@ -15,7 +15,7 @@ from rest_framework_jwt.settings import api_settings
 from apps.auths.models import UserSima
 
 import datetime
-from lib.lib_apps_auth import generate_unique_no_anggota,mapping_gender,mapping_pekerjaan,mapping_pendidikan
+from lib_util.lib_apps_auth import generate_unique_no_anggota,mapping_gender,mapping_pekerjaan,mapping_pendidikan
 
 class Login(APIView):
     permission_classes = (AllowAny,)
