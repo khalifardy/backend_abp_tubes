@@ -27,7 +27,10 @@ SECRET_KEY = "django-insecure-7_0fk4=fjr&+jycxydz-su!$m=4xj#b_6n$cddev0sa-v1$z7f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '103.181.183.39',
+    'ideasophiadomainesiacom-2ac6b92b1240.nevacloud.io'
+]
 
 
 # Application definition
