@@ -29,7 +29,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     '103.181.183.39',
-    'ideasophiadomainesiacom-2ac6b92b1240.nevacloud.io'
+    'ideasophiadomainesiacom-2ac6b92b1240.nevacloud.io',
+    'localhost', 
+    '127.0.0.1'
 ]
 
 
