@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 class Author(models.Model):
     name = models.CharField(max_length=100)
+    code = models.CharField(max_length=100, default="")
     def __str__(self):
         return self.name
 
@@ -59,13 +60,14 @@ class Book(models.Model):
     publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE,null=True,default="")
     category = models.PositiveSmallIntegerField(choices=kategori_choice)
     sub_category = models.PositiveSmallIntegerField(choices=sub_kategori_choice)
-    url_buku = models.URLField()
-    url_image = models.URLField()
+    url_buku = models.FileField(upload_to='buku/')
+    url_image = models.ImageField(upload_to='images/',null=True)
     stok = models.IntegerField()
     premium = models.BooleanField(default=False)
     
     def __str__(self):
         return self.title
+    
 
 class Review(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE)

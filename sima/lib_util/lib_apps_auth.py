@@ -1,6 +1,7 @@
 import random
 from apps.auths.models import UserSima
 
+
 def generate_unique_no_anggota():
     while True:
         no_anggota = str(random.randint(100000000000, 999999999999))  # Generate a 12 digit number
@@ -51,3 +52,28 @@ def mapping_pendidikan(pendidikan):
     }
     
     return pend[pendidikan]
+
+def book_kategori(kategori):
+    kat = {
+        'fiksi':1,
+        'non_fiksi':2
+    }
+    
+    return kat[kategori]
+
+def book_sub_kategori(sub_kategori):
+    sub_kat = {
+        'novel':1,
+        'komik':2,
+        'sains':3,
+        'humaniora':4,
+        'biografi':5,
+        'pendidikan':6,
+        'agama':7,
+        'psikologi':8,
+        'humanioran':9,
+        'pertanian':10,
+        'journal':11
+    }
+    
+    return sub_kat[sub_kategori]
