@@ -32,7 +32,7 @@ ALLOWED_HOSTS = [
     'ideasophiadomainesiacom-2ac6b92b1240.nevacloud.io',
     'localhost', 
     '127.0.0.1',
-    '*.ideasophia.my.id',
+    'sima.ideasophia.my.id',
 ]
 
 
