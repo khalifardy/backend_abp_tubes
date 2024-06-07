@@ -71,6 +71,7 @@ INTERNAL_IPS =[
 
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_DOMAIN = 'sima.ideasophia.my.id'
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
