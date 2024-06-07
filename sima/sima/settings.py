@@ -33,6 +33,8 @@ ALLOWED_HOSTS = [
     'localhost', 
     '127.0.0.1',
     'sima.ideasophia.my.id',
+    'nextcloud.ideasophia.my.id',
+    'ideasophia.my.id',
 ]
 
 
