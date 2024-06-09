@@ -76,6 +76,13 @@ CSRF_COOKIE_SECURE = False
 CSRF_COOKIE_DOMAIN = 'sima.ideasophia.my.id'
 CSRF_TRUSTED_ORIGINS = ['https://sima.ideasophia.my.id']
 
+# Max size for data upload (200MB)
+DATA_UPLOAD_MAX_MEMORY_SIZE = 209715200  # 200 * 1024 * 1024
+
+# Max size for file upload (200MB)
+FILE_UPLOAD_MAX_MEMORY_SIZE = 209715200  # 200 * 1024 * 1024
+
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
