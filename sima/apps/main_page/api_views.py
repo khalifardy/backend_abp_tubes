@@ -24,7 +24,7 @@ from lib_util.lib_apps_main_page import book_kategori, book_sub_kategori
 from authenticate import IsTokenValid
 
 class BookPagination(PageNumberPagination):
-    page_size = 10
+    page_size = 2
 
 class BookList(ListAPIView):
     serializer_class = BookSerializers
@@ -34,34 +34,18 @@ class BookList(ListAPIView):
     def get_queryset(self):
         queryset = Book.objects.all()
         page = self.request.query_params.get('page',None)
-        author = self.request.query_params.get('author',None)
-        title = self.request.query_params.get('title',None)
-        publisher = self.request.query_params.get('publisher',None)
-        category = self.request.query_params.get('category',None)
-        code = self.request.query_params.get('code',None)
-        sub_category = self.request.query_params.get('sub_category',None)
-        isbn = self.request.query_params.get('isbn',None)
-        
-        if author:
-            queryset = queryset.filter(author__name=author)
-        
-        if title:
-            queryset = queryset.filter(title=title)
-        
-        if publisher:
-            queryset = queryset.filter(publisher__name=publisher)
-        
-        if category:
-            queryset = queryset.filter(category=book_kategori(category))
-        
-        if sub_category:
-            queryset = queryset.filter(sub_category=book_sub_kategori(sub_category))
-        
-        if code:
-            queryset = queryset.filter(code=code)
-        
-        if isbn:
-            queryset = queryset.filter(isbn=isbn)
+        search = self.request.query_params.get('search',None)
+
+        if search:
+            queryset = queryset.filter(
+                Q(title__icontains=search) |
+                Q(author__name__icontains=search) |
+                Q(publisher__name__icontains=search) |
+                Q(category__icontains=search) |
+                Q(sub_category__icontains=search) |
+                Q(code__icontains=search) |
+                Q(isbn__icontains=search)
+            )
         
         return queryset
     
