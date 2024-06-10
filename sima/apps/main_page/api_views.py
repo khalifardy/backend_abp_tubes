@@ -24,7 +24,7 @@ from lib_util.lib_apps_main_page import book_kategori, book_sub_kategori
 from authenticate import IsTokenValid
 
 class BookPagination(PageNumberPagination):
-    page_size = 2
+    page_size = 10
 
 class BookList(ListAPIView):
     serializer_class = BookSerializers
