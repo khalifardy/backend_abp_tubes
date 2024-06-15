@@ -64,8 +64,9 @@ class CrudBook(APIView):
         id = request.query_params.get('id',None)
         if id:
             try:
-                book = Book.objects.get(id=id)
-                return Response(BookSerializers(book).data, status=status.HTTP_200_OK)
+
+                book = Review.objects.get(book__id=id)
+                return Response(ReviewSerializers(book).data, status=status.HTTP_200_OK)
             except Exception as e:
                 return Response({"msg":str(e)}, status=status.HTTP_400_BAD_REQUEST)
         else:
