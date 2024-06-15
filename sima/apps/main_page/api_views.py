@@ -180,8 +180,9 @@ class CrudBook(APIView):
     def delete(self, request):
         id = request.data.get('id')
         try:
-            Book.objects.get(id=id).delete()
             Review.objects.get(book__id=id).delete()
+            Book.objects.get(id=id).delete()
+            
             return Response({"msg":"berhasil menghapus buku"}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({"msg":str(e)}, status=status.HTTP_400_BAD_REQUEST)   
