@@ -18,7 +18,7 @@ from rest_framework.generics import ListAPIView
 
 from .models import Author, Publisher, Book, Review
 
-from .serializers import BookSerializers, ReviewSerializers, AuthorSerializers
+from .serializers import BookSerializers, ReviewSerializers, AuthorSerializers, PublisherSerializers
 
 from lib_util.lib_apps_main_page import book_kategori, book_sub_kategori
 from authenticate import IsTokenValid
@@ -187,3 +187,58 @@ class AuthorList(APIView):
     def get(self, request):
         author = Author.objects.all()
         return Response(AuthorSerializers(author, many=True).data, status=status.HTTP_200_OK)
+
+class AuthorCrud(APIView):
+    permission_classes = (IsTokenValid,)
+    
+    def get(self, request):
+        id = request.query_params.get('id')
+        try:
+            author = Author.objects.get(id=id)
+            return Response(AuthorSerializers(author).data, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"msg":str(e)}, status=status.HTTP_400_BAD_REQUEST)
+    
+    def post(self, request):
+        name = request.data.get('name')
+        code = request.data.get('code')
+        try:
+            Author.objects.create(name=name,code=code)
+            return Response({"msg":"berhasil menambahkan author"}, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"msg":str(e)}, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class PublisherList(APIView):
+    permission_classes = (AllowAny,)
+    def get(self, request):
+        publisher = Publisher.objects.all()
+        return Response(PublisherSerializers(publisher, many=True).data, status=status.HTTP_200_OK)   
+        
+
+class PublisherCrud(APIView):
+    permission_classes = (IsTokenValid,)
+    
+    def get(self, request):
+        id = request.query_params.get('id')
+        try:
+            publisher = Publisher.objects.get(id=id)
+            return Response(PublisherSerializers(publisher).data, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"msg":str(e)}, status=status.HTTP_400_BAD_REQUEST)
+    
+    def post(self, request):
+        name = request.data.get('name')
+        address = request.data.get('address')
+        city = request.data.get('city')
+        country = request.data.get('country')
+        website = request.data.get('website')
+        contact = request.data.get('contact')
+        code = request.data.get('code')
+        
+        try:
+            Publisher.objects.create(name=name,address=address,city=city,country=country,website=website,contact=contact,code=code)
+            return Response({"msg":"berhasil menambahkan publisher"}, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"msg":str(e)}, status=status.HTTP_400_BAD_REQUEST)
+
