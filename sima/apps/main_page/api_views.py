@@ -84,6 +84,7 @@ class CrudBook(APIView):
         stok = request.data.get('stok',0)
         premium = request.data.get('premium',False)
         sinopsis = request.data.get('sinopsis',None)
+        rating = int(request.data.get('rating',0))
         
         author = Author.objects.get(name=author)
         publisher = Publisher.objects.get(name=publisher)
@@ -104,7 +105,7 @@ class CrudBook(APIView):
             )
             
             book_id = Book.objects.get(code=code)
-            Review.objects.create(book=book_id, sinopsis=sinopsis)
+            Review.objects.create(book=book_id, review=sinopsis,rating=rating)
             return Response({"msg":"berhasil menambahkan buku"}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({"msg":str(e)}, status=status.HTTP_400_BAD_REQUEST)
@@ -123,6 +124,7 @@ class CrudBook(APIView):
         stok = request.data.get('stok',None)
         premium = request.data.get('premium',None)
         sinopsis = request.data.get('sinopsis',None)
+        rating = int(request.data.get('rating',0))
         
         
         try: 
@@ -166,7 +168,11 @@ class CrudBook(APIView):
             
             if sinopsis:
                 book_id = Book.objects.get(id=id)
-                Review.objects.filter(book=book_id).update(sinopsis=sinopsis)
+                Review.objects.filter(book=book_id).update(review=sinopsis)
+            
+            if rating:
+                book_id = Book.objects.get(id=id)
+                Review.objects.filter(book=book_id).update(rating=rating)
             return Response({"msg":"berhasil mengupdate buku"}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({"msg":str(e)}, status=status.HTTP_400_BAD_REQUEST)
