@@ -234,10 +234,9 @@ class PublisherCrud(APIView):
         country = request.data.get('country')
         website = request.data.get('website')
         contact = request.data.get('contact')
-        code = request.data.get('code')
         
         try:
-            Publisher.objects.create(name=name,address=address,city=city,country=country,website=website,contact=contact,code=code)
+            Publisher.objects.create(name=name,address=address,city=city,country=country,website=website,contact=contact)
             return Response({"msg":"berhasil menambahkan publisher"}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({"msg":str(e)}, status=status.HTTP_400_BAD_REQUEST)
