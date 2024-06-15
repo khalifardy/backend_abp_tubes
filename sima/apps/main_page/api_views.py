@@ -146,9 +146,9 @@ class CrudBook(APIView):
             if publisher:
                 update_fields['publisher'] = Publisher.objects.get(name=publisher)
             if category:
-                update_fields['category'] = category
+                update_fields['category'] = book_kategori(category.lower())
             if sub_category:
-                update_fields['sub_category'] = sub_category
+                update_fields['sub_category'] = book_sub_kategori(sub_category.lower())
             if stok:
                 update_fields['stok'] = stok
             if premium:
