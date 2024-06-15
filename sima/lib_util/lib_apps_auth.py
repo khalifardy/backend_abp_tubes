@@ -32,7 +32,7 @@ def mapping_pekerjaan(pekerjaan):
         'mahasiswa':3,
         'pelajar':4,
         'wiraswasta':5,
-        'pegawai_negara_non_asn':6,
+        'pegawai negara non asn':6,
         'other':7
     }
     

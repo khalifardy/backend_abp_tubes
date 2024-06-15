@@ -30,3 +30,8 @@ class ReviewSerializers(serializers.ModelSerializer):
     class Meta:
         model = Review
         fields = '__all__'
+
+class AuthorSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Author
+        fields = '__all__'

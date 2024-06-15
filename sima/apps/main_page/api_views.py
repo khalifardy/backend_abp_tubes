@@ -18,7 +18,7 @@ from rest_framework.generics import ListAPIView
 
 from .models import Author, Publisher, Book, Review
 
-from .serializers import BookSerializers, ReviewSerializers
+from .serializers import BookSerializers, ReviewSerializers, AuthorSerializers
 
 from lib_util.lib_apps_main_page import book_kategori, book_sub_kategori
 from authenticate import IsTokenValid
@@ -83,6 +83,7 @@ class CrudBook(APIView):
         url_image = request.FILES.get('image',None)
         stok = request.data.get('stok',0)
         premium = request.data.get('premium',False)
+        sinopsis = request.data.get('sinopsis',None)
         
         author = Author.objects.get(name=author)
         publisher = Publisher.objects.get(name=publisher)
@@ -101,6 +102,9 @@ class CrudBook(APIView):
                 stok=stok,
                 premium=premium
             )
+            
+            book_id = Book.objects.get(code=code)
+            Review.objects.create(book=book_id, sinopsis=sinopsis)
             return Response({"msg":"berhasil menambahkan buku"}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({"msg":str(e)}, status=status.HTTP_400_BAD_REQUEST)
@@ -118,6 +122,7 @@ class CrudBook(APIView):
         url_image = request.FILES.get('image',None)
         stok = request.data.get('stok',None)
         premium = request.data.get('premium',None)
+        sinopsis = request.data.get('sinopsis',None)
         
         
         try: 
@@ -154,9 +159,14 @@ class CrudBook(APIView):
 
                 book = Book.objects.get(id=id)
                 book.url_image.save(url_image.name, ContentFile(url_image.read()))  # Save the new file
+            
 
             # Update the book
             Book.objects.filter(id=id).update(**update_fields)
+            
+            if sinopsis:
+                book_id = Book.objects.get(id=id)
+                Review.objects.filter(book=book_id).update(sinopsis=sinopsis)
             return Response({"msg":"berhasil mengupdate buku"}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({"msg":str(e)}, status=status.HTTP_400_BAD_REQUEST)
@@ -165,8 +175,15 @@ class CrudBook(APIView):
         id = request.data.get('id')
         try:
             Book.objects.get(id=id).delete()
+            Review.objects.get(book__id=id).delete()
             return Response({"msg":"berhasil menghapus buku"}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({"msg":str(e)}, status=status.HTTP_400_BAD_REQUEST)   
          
         
+
+class AuthorList(APIView):
+    permission_classes = (AllowAny,)
+    def get(self, request):
+        author = Author.objects.all()
+        return Response(AuthorSerializers(author, many=True).data, status=status.HTTP_200_OK)
