@@ -89,6 +89,9 @@ class CrudBook(APIView):
         
         author = Author.objects.get(name=author)
         publisher = Publisher.objects.get(name=publisher)
+        query = Book.objects.filter(Q(title=title) | Q(code=code) | Q(isbn=isbn))
+        if len(query)>0:
+            return Response({"msg":"buku sudah ada"}, status=status.HTTP_400_BAD_REQUEST)
         
         try:
             Book.objects.create(
