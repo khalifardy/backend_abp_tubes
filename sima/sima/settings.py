@@ -36,6 +36,11 @@ ALLOWED_HOSTS = [
     'nextcloud.ideasophia.my.id',
     'ideasophia.my.id',
     'api-sima.ideasophia.my.id',
+    'sima.ideasophia.tech',
+    'nextcloud.ideasophia.tech',
+    'ideasophia.tech',
+    'api-sima.ideasophia.tech',
+    
 ]
 
 
